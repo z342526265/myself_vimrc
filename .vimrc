@@ -1,5 +1,18 @@
+
+
+" autoload _vimrc
+autocmd! bufwritepost .vimrc source %
+
+" disable VI's compatible mode..
+set nocompatible
+
 let &termencoding=&encoding
-set fileencodings=utf-8,gbk
+set fileencodings=ucs-bom,utf-8,gbk,default,latin1
+
+"set gui options
+if has("gui_running")
+  set guifont=Consolas:h9
+endif
 
 set t_Co=256
 "colorscheme soruby
@@ -30,7 +43,10 @@ set noswapfile
 " config it for change buffer without save it when changed
 set hidden "in order to switch between buffers with unsaved change
 map <silent><F8> :NERDTree<CR>
+
 set nu
+"set showmatch
+
 map <tab> :tabn<CR>
 let g:user_zen_settings = {
       \  'indentation' : '  '
@@ -62,7 +78,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'vim-scripts/The-NERD-Commenter'
 " indent guides
-Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nathanaelkane/vim-indent-guides'
 " indent guides shortcut
 map <silent><F7>  <leader>ig
 
@@ -93,3 +109,43 @@ filetype plugin indent on     " required!
 "
 "
 map <F8> :NERDTreeToggle<cr>
+
+"输入<%= %>
+"map ,ff i<%= %><Esc>hhi 
+":inoremap ,ff <%= %><Esc>hhi 
+map ,ff i<?php echo ?><Esc>hhi 
+:inoremap ,ff <?php echo ?><Esc>hhi 
+"map ,tt i<% %><Esc>hhi 
+":inoremap ,tt <% %><Esc>hhi 
+":inoremap <A-<> []i  
+
+"增加ruby gem tags文件
+"set tags+=~/.rvm/gems/ruby-1.9.3-p392@rails313tutorials2ndEd/ruby.tags
+"set tags+=~/.rvm/gems/ruby-2.0.0-p0@refinerycms/tags
+"set tags+=/home/xiaofei/.rvm/rubies/ruby-2.0.0-p0/tags
+
+
+"php 语法支持
+Bundle 'shawncplus/php.vim'
+"php语法检查
+"Bundle 'joonty/vim-phpqa.git'
+"autocmd FileType php set omnifunc=phpcomplete
+
+"对齐线支持
+Bundle 'nathanaelkane/vim-indent-guides'
+"自定义配色方案
+"配色方案
+Bundle 'vim-scripts/inkpot'
+colorscheme inkpot
+
+let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+"hi IndentGuidesOdd  guibg=red   ctermbg=3
+"hi IndentGuidesEven guibg=green ctermbg=4
+"把当前光标下的行和列高亮
+set cuc
+set ts=2 sw=2 et
+let g:indent_guides_start_level = 2
+
+
